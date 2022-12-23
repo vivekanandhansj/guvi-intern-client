@@ -4,6 +4,7 @@ import {  useNavigate } from 'react-router-dom';
 export const Navbar = () => {
     let navigate = useNavigate();
    
+   
     let handleLogout = () => {
 
         window.localStorage.removeItem("user");

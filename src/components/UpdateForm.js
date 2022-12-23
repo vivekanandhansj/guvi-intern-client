@@ -7,7 +7,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const UpdateForm = () => {
-  const notify = () => toast("Wow so easy!");
+  const notifySuccess =()=>{
+    toast.success('Successfully updated!', {
+      position: toast.POSITION.TOP_RIGHT
+  })
+  }
+  const notifyError =()=>{
+    toast.error('Something went wrong!', {
+      position: toast.POSITION.TOP_RIGHT
+  })
+  }
+  
   const id = getUserData();
   const { values, setValues,touched, errors, handleChange, handleSubmit } = useFormik({
     initialValues: {
@@ -60,7 +70,10 @@ const UpdateForm = () => {
         console.log(values);
       } catch (error) {
         console.log(error);
-        alert("Something went wrong");
+        toast.error('something went wrong please check it!', {
+          position: toast.POSITION.TOP_RIGHT
+      })
+       
       }
     },
   });
@@ -87,7 +100,10 @@ const UpdateForm = () => {
           });
           console.log(userData.data.name);
         } catch (error) {
-          alert("something went wrong");
+          toast.error('something went wrong please check it!', {
+            position: toast.POSITION.TOP_RIGHT
+        })
+         
         }
       }
     };
@@ -214,7 +230,7 @@ const UpdateForm = () => {
                   className="btn btn-outline-primary text-center "
                   type={"submit"}
                   value="Submit"
-                  onClick={notify}
+                  onClick={errors ? notifyError : notifySuccess}
                 >
                   SUBMIT
                 </button>

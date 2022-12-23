@@ -6,8 +6,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
+  
 
-  const notify = () => toast("Wow so easy!");
+const notifySuccess =()=>{
+  toast.success('Successfully login!', {
+    position: toast.POSITION.TOP_RIGHT
+})
+}
+
 
   let navigate = useNavigate();
   let formik = useFormik({
@@ -35,10 +41,17 @@ function Login() {
     onSubmit: async (values) => {
         try {
             let loginData = await axios.post("https://guvi-server.onrender.com/api/auth/login", values);
+            
             localStorage.setItem("user", JSON.stringify(loginData.data));
+           
             navigate("/profile");
+           
           } catch (error) {
             console.log(error)
+            toast.error('Wrongcredentials!', {
+              position: toast.POSITION.TOP_RIGHT
+          })
+          
           }
     },
   });
@@ -82,7 +95,7 @@ function Login() {
           </div>
 
           <div className="col-lg-12 m-2">
-            <input type={'submit'} onClick={notify} className="btn btn-primary" value="Submit" />
+            <button   className="btn btn-primary" onClick={formik.errors ? notifySuccess : undefined}value="Submit" >Login</button>
             <ToastContainer />
           </div>
         </div>

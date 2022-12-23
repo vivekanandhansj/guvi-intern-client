@@ -5,8 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 function Register() {
-  const notify = () => toast("Wow so easy!");
+
+  const notifySuccess =()=>{
+    toast.success('Successfully registered!', {
+      position: toast.POSITION.TOP_RIGHT
+  })
+  }
+  
   let navigate = useNavigate();
   let formik = useFormik({
     initialValues: {
@@ -49,13 +56,17 @@ function Register() {
         navigate('/login');
       } catch (error) {
         console.log(error);
+        toast.error('something went wrong please check it!', {
+          position: toast.POSITION.TOP_RIGHT
+      })
        
       }
     },
   });
   return (
-    <div className="container">
-       <div className="row mt-5 p-2 align-items-center">
+    <div className="container ">
+     
+       <div className="row mt-5 p-2 align-items-center " >
         <div className="col-4"></div>
         <div className="card shadow bg-white col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4">
       <form onSubmit={formik.handleSubmit}>
@@ -107,7 +118,7 @@ function Register() {
             />{formik.errors.confirmpassword && formik.touched.confirmpassword ? <div style={{color : "red"}}>{formik.errors.confirmpassword}</div> : null }
           </div>
           <div className="col-lg-12 mt-2 mb-2 text-center">
-            <button   onClick={notify} className="btn btn-primary " value="Submit" >Register</button>
+            <button   onClick={formik.errors ? undefined : notifySuccess} className="btn btn-primary " value="Submit" >Register</button>
             <ToastContainer />
           </div>
         </div>
