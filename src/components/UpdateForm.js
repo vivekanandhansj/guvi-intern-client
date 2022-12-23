@@ -49,7 +49,7 @@ const UpdateForm = () => {
     onSubmit: async (values) => {
       try {
         await axios.put(
-          `http://localhost:7000/api/user/edituser/${id}`,
+          `https://guvi-server.onrender.com/api/user/edituser/${id}`,
           values,
           {
             headers: {
@@ -70,7 +70,7 @@ const UpdateForm = () => {
       if (id) {
         try {
           let userData = await axios.get(
-            `http://localhost:7000/api/user/viewuser/${id}`,
+            `https://guvi-server.onrender.com/api/user/viewuser/${id}`,
             {
               headers: {
                 Authorization: id,

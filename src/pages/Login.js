@@ -34,7 +34,7 @@ function Login() {
     },
     onSubmit: async (values) => {
         try {
-            let loginData = await axios.post("http://localhost:7000/api/auth/login", values);
+            let loginData = await axios.post("https://guvi-server.onrender.com/api/auth/login", values);
             localStorage.setItem("user", JSON.stringify(loginData.data));
             navigate("/profile");
           } catch (error) {

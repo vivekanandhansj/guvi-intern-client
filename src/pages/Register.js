@@ -45,7 +45,7 @@ function Register() {
     },
     onSubmit: async (values) => {
       try {
-        await axios.post('http://localhost:7000/api/auth/register', values);
+        await axios.post('https://guvi-server.onrender.com/api/auth/register', values);
         navigate('/login');
       } catch (error) {
         console.log(error);
