@@ -1,9 +1,10 @@
 import React from 'react'
 import {  useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Navbar = () => {
     let navigate = useNavigate();
-   
    
     let handleLogout = () => {
 
@@ -23,10 +24,10 @@ export const Navbar = () => {
           <ul className="nav justify-content-end">
            
             <li className="nav-item">
-              <button className="btn btn-danger" onClick={handleLogout} >
+              <button className="btn btn-danger"  onClick={handleLogout} >
                 Logout
               </button>
-              
+            
             </li>
           </ul>
         </div>

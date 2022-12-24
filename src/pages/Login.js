@@ -1,19 +1,10 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
-  
-
-const notifySuccess =()=>{
-  toast.success('Successfully login!', {
-    position: toast.POSITION.TOP_RIGHT
-})
-}
-
 
   let navigate = useNavigate();
   let formik = useFormik({
@@ -41,11 +32,11 @@ const notifySuccess =()=>{
     onSubmit: async (values) => {
         try {
             let loginData = await axios.post("https://guvi-server.onrender.com/api/auth/login", values);
-            
             localStorage.setItem("user", JSON.stringify(loginData.data));
-           
-            navigate("/profile");
-           
+            toast.success('Successfully updated!', {
+              position: toast.POSITION.TOP_RIGHT
+          })
+      navigate("/profile")
           } catch (error) {
             console.log(error)
             toast.error('Wrongcredentials!', {
@@ -55,11 +46,7 @@ const notifySuccess =()=>{
           }
     },
   });
-  useEffect(()=> {
-    if(localStorage.getItem("user")){
-      navigate("/profile")
-    }
-  },[])
+
 
   return (
     <div className="container">
@@ -95,7 +82,7 @@ const notifySuccess =()=>{
           </div>
 
           <div className="col-lg-12 m-2">
-            <button   className="btn btn-primary" onClick={formik.errors ? notifySuccess : undefined}value="Submit" >Login</button>
+            <button   className="btn btn-primary" disabled={!formik.isValid} type = {"submit"} value="Submit" >Login</button>
             <ToastContainer />
           </div>
         </div>

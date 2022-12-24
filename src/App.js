@@ -7,11 +7,13 @@ import bootstrap from '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap'
 
 
+
 function App() {
+  
   return (
    <BrowserRouter>      
       <Routes>
-        <Route path="/profile" exact element={<Home />} />
+        <Route path='/profile' exact element={<Home />} />
         <Route path="/" exact element={<Register />} />
         <Route  path="/login" exact element={<Login />} />
       </Routes>

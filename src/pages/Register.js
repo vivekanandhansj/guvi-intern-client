@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
 
-  const notifySuccess =()=>{
+  function notifySuccess (){
     toast.success('Successfully registered!', {
       position: toast.POSITION.TOP_RIGHT
   })
@@ -30,8 +30,6 @@ function Register() {
       } else if (values.name.length > 15) {
         errors.name = 'Must be 15 characters or less';
       }
-      
-
       if (!values.email) {
         errors.email  = 'This field cannot be empty';
       }
@@ -41,19 +39,20 @@ function Register() {
       } if ( values.password.length < 6   ) {
         errors.password = 'Must between 6 to 12 characters' ;
       }
-    
       if ( values.confirmpassword.length < 6 ) {
         errors.confirmpassword = 'Must between 6 to 12 characters' ;
       }
-     
-     
-
       return errors;
     },
     onSubmit: async (values) => {
+      
       try {
+       
         await axios.post('https://guvi-server.onrender.com/api/auth/register', values);
-        navigate('/login');
+      navigate('/login')
+        console.log("success")
+        notifySuccess()
+
       } catch (error) {
         console.log(error);
         toast.error('something went wrong please check it!', {
@@ -118,7 +117,7 @@ function Register() {
             />{formik.errors.confirmpassword && formik.touched.confirmpassword ? <div style={{color : "red"}}>{formik.errors.confirmpassword}</div> : null }
           </div>
           <div className="col-lg-12 mt-2 mb-2 text-center">
-            <button   onClick={formik.errors ? undefined : notifySuccess} className="btn btn-primary " value="Submit" >Register</button>
+            <button   className="btn btn-primary "  type = {"submit"} value="Submit" >Register</button>
             <ToastContainer />
           </div>
         </div>
