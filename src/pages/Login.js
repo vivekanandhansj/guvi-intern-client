@@ -33,10 +33,11 @@ function Login() {
         try {
             let loginData = await axios.post("https://guvi-server.onrender.com/api/auth/login", values);
             localStorage.setItem("user", JSON.stringify(loginData.data));
+            navigate("/profile")
             toast.success('Successfully updated!', {
               position: toast.POSITION.TOP_RIGHT
           })
-      navigate("/profile")
+      
           } catch (error) {
             console.log(error)
             toast.error('Wrongcredentials!', {
