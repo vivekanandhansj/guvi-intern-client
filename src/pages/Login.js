@@ -49,8 +49,9 @@ function Login() {
 
 
   return (
-    <div className="container">
-       <div className="row mt-5 p-2">
+    <>
+     <div className="container h-100 ">
+       <div  className="row mt-5 p-2 ">
         <div className="col-4"></div>
         <div className="card shadow bg-white col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4">
       <form onSubmit={formik.handleSubmit}>
@@ -81,8 +82,8 @@ function Login() {
             />{formik.errors.password ? <div style={{color : "red"}}>{formik.errors.password}</div> : null }
           </div>
 
-          <div className="col-lg-12 m-2">
-            <button   className="btn btn-primary" disabled={!formik.isValid} type = {"submit"} value="Submit" >Login</button>
+          <div className="text-center mt-2 mb-2 ">
+            <button   className="btn btn-primary"  type = {"submit"} value="Submit" >Login</button>
             <ToastContainer />
           </div>
         </div>
@@ -90,6 +91,8 @@ function Login() {
      </div>  
      </div> 
     </div>
+    </>
+   
   );
 }
 
